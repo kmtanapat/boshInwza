@@ -8,6 +8,8 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 
 class User extends Authenticatable
 {
+    const ADMIN_TYPE = 'admin';
+    const DEFAULT_TYPE = 'default';
     use Notifiable;
 
     /**
@@ -15,6 +17,9 @@ class User extends Authenticatable
      *
      * @var array
      */
+    public function isAdmin()    {
+        return $this->type === self::ADMIN_TYPE;
+    }
     protected $fillable = [
         'name', 'email', 'password',
     ];
